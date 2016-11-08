@@ -8,5 +8,4 @@ describe Bike do
     expect(bike).to respond_to(:working?)
   end
 
-
 end
