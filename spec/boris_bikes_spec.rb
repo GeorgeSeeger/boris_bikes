@@ -39,4 +39,14 @@ describe DockingStation do
      expect(dock.bike_count).to eq 10
    end
 
+   it "should raise an error upon releasing bike when no bikes are left in dock" do
+     10.times { dock.release_bike }
+     expect{dock.release_bike}.to raise_error("Fail")
+   end
+
+   it "should raise an error upon docking bike when 10 bikes in dock" do
+     10.times {dock.dock_bike(bike)}
+     expect {dock.dock_bike(bike)}.to raise_error("Fail")
+   end
+
 end
