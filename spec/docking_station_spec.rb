@@ -28,6 +28,7 @@ describe DockingStation do
 
   it 'should add a docked bike to docked bikes array' do
     bike = subject.get_bike
-    expect(subject.dock_bike(bike)).to include(bike)
+    subject.dock_bike(bike)
+    expect(subject.bikes).to include(bike)
   end
 end
