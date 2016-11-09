@@ -15,4 +15,8 @@ describe "Docking Station" do
     puts subject
   end
 
+  it 'should get a working bike' do
+    expect(DockingStation.new.get_bike.working?).to eq true
+  end
+
 end
