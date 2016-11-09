@@ -44,8 +44,9 @@ describe DockingStation do
       expect { subject.release_bike }.to raise_error(RuntimeError, "No bikes available.")
     end
 
-    it 'should raise an error if the station is at capacity ie 20 bikes already' do
-      20.times { subject.dock_bike(subject.get_bike) }
+    it "should raise an error if the station is at capacity ie #{DockingStation::DEFAULT_CAPACITY} bikes already" do
+      capacity = DockingStation::DEFAULT_CAPACITY
+      capacity.times { subject.dock_bike(subject.get_bike) }
       expect { subject.dock_bike(subject.get_bike) }.to raise_error(RuntimeError, "Dock at capacity.")
     end
 
