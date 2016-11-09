@@ -8,12 +8,12 @@ class DockingStation
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
-    @bikes = Array.new(@capacity){Bike.new}
+    @bikes = Array.new(0)
   end
 
   def release_bike
     fail "Rack is empty" if empty?
-    @bikes.pop if @bikes[-1].working?   
+    @bikes.pop if @bikes[-1].working?
   end
 
   def return_bike(bike)
