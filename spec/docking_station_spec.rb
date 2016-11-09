@@ -1,22 +1,21 @@
 require 'docking_station'
 
-describe "Docking Station" do
+describe DockingStation do
 
   it "should produce a new docking station object" do
-    expect(DockingStation.new).to be_kind_of(DockingStation)
+    expect(subject).to be_kind_of(DockingStation)
   end
 
   it "should call the method release bike on the object" do
-    expect(DockingStation.new).to respond_to(:release_bike)
+    expect(subject).to respond_to(:release_bike)
   end
 
   it 'should get a bike' do
-    expect(DockingStation.new.get_bike).to be_kind_of(Bike)
-    puts subject
+    expect(subject.get_bike).to be_kind_of(Bike)
   end
 
   it 'should get a working bike' do
-    expect(DockingStation.new.get_bike.working?).to eq true
+    expect(subject.get_bike.working?).to eq true
   end
 
 end
