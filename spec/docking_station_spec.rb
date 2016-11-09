@@ -10,6 +10,12 @@ describe DockingStation do
       expect(subject).to respond_to(:release_bike)
     end
 
+    it 'should release a bike if there\'s one in the station' do
+      bike = subject.get_bike
+      subject.dock_bike(bike)
+      expect(subject.release_bike).to be_kind_of(Bike)
+    end
+
     it 'should get a bike' do
       expect(subject.get_bike).to be_kind_of(Bike)
     end
