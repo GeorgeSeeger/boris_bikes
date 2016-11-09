@@ -2,12 +2,11 @@ require 'docking_station'
 
 describe DockingStation do
 
-    it "should produce a new docking station object" do
-      expect(subject).to be_kind_of(DockingStation)
-    end
+  context "Releasing and Docking Bikes" do
 
-    it "should call the method release bike on the object" do
-      expect(subject).to respond_to(:release_bike)
+    it 'should get a working bike' do
+      bike = subject.get_bike
+      expect(bike.working?).to eq true
     end
 
     it 'should release a bike if there\'s one in the station' do
@@ -16,12 +15,26 @@ describe DockingStation do
       expect(subject.release_bike).to be_kind_of(Bike)
     end
 
-    it 'should get a bike' do
-      expect(subject.get_bike).to be_kind_of(Bike)
+    it 'should add a docked bike to docked bikes array' do
+      bike = subject.get_bike
+      subject.dock_bike(bike)
+      expect(subject.bikes).to include(bike)
     end
 
-    it 'should get a working bike' do
-      expect(subject.get_bike.working?).to eq true
+  end
+
+  context "Docking Station Requirements" do
+
+    it "should produce a new docking station object" do
+      expect(subject).to be_kind_of(DockingStation)
+    end
+
+    it "should call the method release bike on the object" do
+      expect(subject).to respond_to(:release_bike)
+    end
+
+    it 'should get a bike' do
+      expect(subject.get_bike).to be_kind_of(Bike)
     end
 
     it 'should respond to dock_bike' do
@@ -32,16 +45,12 @@ describe DockingStation do
       expect(subject.bikes).to be_kind_of(Array)
     end
 
-    it 'should add a docked bike to docked bikes array' do
-      bike = subject.get_bike
-      subject.dock_bike(bike)
-      expect(subject.bikes).to include(bike)
-    end
-
     it 'should have user set capacity on initialize method' do
       subject = DockingStation.new(15)
       expect(subject.capacity).to eq 15
     end
+
+  end
 
   context "Errors" do
 
