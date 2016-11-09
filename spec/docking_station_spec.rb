@@ -38,6 +38,11 @@ describe DockingStation do
       expect(subject.bikes).to include(bike)
     end
 
+    it 'should have user set capacity on initialize method' do
+      subject = DockingStation.new(15)
+      expect(subject.capacity).to eq 15
+    end
+
   context "Errors" do
 
     it 'should raise an error if there are no bikes at the station' do
