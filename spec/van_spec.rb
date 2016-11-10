@@ -1,4 +1,4 @@
-require 'van'
+require 'dependencies'
 
 describe Van do
 

@@ -1,5 +1,5 @@
-require 'docking_station'
-require 'bike'
+require 'dependencies'
+
 
 describe DockingStation do
 

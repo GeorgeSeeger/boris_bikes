@@ -1,7 +1,9 @@
-require 'docking_station'
-class Van
+require 'docking_station.rb'
+require 'bike_container.rb'
 
-attr_reader :bikes
+class Van
+  include BikeContainer
+  # attr_reader :bikes
 
   def initialize
     @bikes = []

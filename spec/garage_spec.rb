@@ -1,4 +1,4 @@
-require 'garage'
+require 'dependencies'
 
 describe Garage do
 

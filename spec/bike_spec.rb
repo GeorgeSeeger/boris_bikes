@@ -1,4 +1,4 @@
-require 'bike.rb'
+require 'dependencies'
 
 describe Bike do
 

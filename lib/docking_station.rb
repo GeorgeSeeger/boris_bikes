@@ -1,8 +1,11 @@
+require 'bike_container.rb'
+
 class DockingStation
 
   DEFAULT_CAPACITY = 20
+  include BikeContainer
 
-  attr_reader :bikes, :capacity
+  attr_reader :capacity
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
@@ -18,7 +21,7 @@ class DockingStation
     raise "Dock at capacity." if full?
     @bikes << bike
   end
-
+  
   private
     def full?
       @bikes.length >= @capacity
