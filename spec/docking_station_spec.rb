@@ -21,6 +21,21 @@ describe DockingStation do
       expect(subject.bikes).to include(bike)
     end
 
+    it 'should accept broken bikes' do
+      bike = subject.get_bike
+      bike.break!
+      subject.dock_bike(bike)
+      expect(subject.bikes).to include(bike)
+    end
+
+
+    it 'should not release bike if broken' do
+      bike = subject.get_bike
+      bike.break!
+      subject.dock_bike(bike)
+      expect(subject.release_bike).to eq nil
+    end
+
   end
 
   context "Docking Station Requirements" do
