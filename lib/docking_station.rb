@@ -9,10 +9,6 @@ class DockingStation
     @bikes = []
   end
 
-  def get_bike
-    Bike.new
-  end
-
   def release_bike
     raise "No bikes available." if empty?
     @bikes.pop if @bikes[-1].working?

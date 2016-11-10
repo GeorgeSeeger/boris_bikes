@@ -1,18 +1,20 @@
 require 'docking_station'
+require 'bike'
 
 describe DockingStation do
 
   context "Releasing and Docking Bikes" do
 
+    let(:bike) { double(:bike) }
     it 'should get a working bike' do
-      bike = double(:bike)
+      allow(bike).to receive(:working?).and_return(true)
       expect(bike.working?).to eq true
     end
 
     it 'should release a bike if there\'s one in the station' do
-      bike = double(:bike)
+      allow(bike).to receive(:working?).and_return(true)
       subject.dock_bike(bike)
-      expect(subject.release_bike).to be_kind_of(Bike)
+      expect(subject.release_bike).to eq bike
     end
 
     it 'should add a docked bike to docked bikes array' do
@@ -22,16 +24,14 @@ describe DockingStation do
     end
 
     it 'should accept broken bikes' do
-      bike = double(:bike)
-      bike.break!
+      allow(bike).to receive(:working?).and_return false
       subject.dock_bike(bike)
       expect(subject.bikes).to include(bike)
     end
 
 
     it 'should not release bike if broken' do
-      bike = double(:bike)
-      bike.break!
+      allow(bike).to receive(:working?).and_return false
       subject.dock_bike(bike)
       expect(subject.release_bike).to eq nil
     end
@@ -46,10 +46,6 @@ describe DockingStation do
 
     it "should call the method release bike on the object" do
       expect(subject).to respond_to(:release_bike)
-    end
-
-    it 'should get a bike' do
-      expect(double(:bike).instance_of?(Bike)).to eq true
     end
 
     it 'should respond to dock_bike' do
