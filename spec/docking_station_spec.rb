@@ -5,7 +5,8 @@ describe DockingStation do
 
   context "Releasing and Docking Bikes" do
 
-    let(:bike) { double(:bike) }
+    let(:bike) { double(:Bike) }
+
     it 'should get a working bike' do
       allow(bike).to receive(:working?).and_return(true)
       expect(bike.working?).to eq true
@@ -13,12 +14,13 @@ describe DockingStation do
 
     it 'should release a bike if there\'s one in the station' do
       allow(bike).to receive(:working?).and_return(true)
+      allow(bike).to receive(:instance_of?).and_return(Bike)
       subject.dock_bike(bike)
       expect(subject.release_bike).to eq bike
+      expect(bike).to be_instance_of Bike
     end
 
     it 'should add a docked bike to docked bikes array' do
-      bike = double(:bike)
       subject.dock_bike(bike)
       expect(subject.bikes).to include(bike)
     end
